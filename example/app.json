@@ -1,0 +1,22 @@
+{
+  "name": "react-native-steve-example",
+  "displayName": "Steve Example",
+  "expo": {
+    "name": "react-native-steve-example",
+    "slug": "react-native-steve-example",
+    "description": "Example app for react-native-steve",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
