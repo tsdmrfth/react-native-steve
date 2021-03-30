@@ -80,6 +80,9 @@ export default function App() {
 
     return (
         <View style={styles.container}>
+            <Text style={title}>
+                {'TOPICS TO EXPLORE'}
+            </Text>
             <Steve
                 data={topics}
                 renderItem={renderTopic}
