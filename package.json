@@ -47,6 +47,7 @@
         "registry": "https://registry.npmjs.org/"
     },
     "devDependencies": {
+        "@babel/plugin-proposal-do-expressions": "^7.12.13",
         "@commitlint/config-conventional": "^11.0.0",
         "@react-native-community/eslint-config": "^2.0.0",
         "@release-it/conventional-changelog": "^2.0.0",
@@ -119,5 +120,9 @@
                 }
             ]
         ]
+    },
+    "dependencies": {
+        "react-native-gesture-handler": "^1.10.3",
+        "react-native-reanimated": "2.0.0-rc.0"
     }
 }

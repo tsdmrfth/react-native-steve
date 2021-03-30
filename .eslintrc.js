@@ -10,7 +10,7 @@ module.exports = {
         indent: ['error', 4, { SwitchCase: 1 }],
         'no-trailing-spaces': 'error',
         'arrow-parens': 'off',
-        'react/prop-types': 'error',
+        'react/prop-types': 'off',
         'no-extra-semi': 'error',
         'react/display-name': [2, { 'ignoreTranspilerName': true }],
         'react/jsx-max-props-per-line': [1, { maximum: 1, when: 'multiline' }],
