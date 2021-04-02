@@ -1,6 +1,6 @@
 {
     "name": "react-native-steve",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "React Native horizontal scroll view component as seen on Clubhouse tags",
     "main": "lib/commonjs/index",
     "module": "lib/module/index",
@@ -69,7 +69,9 @@
     },
     "peerDependencies": {
         "react": "*",
-        "react-native": "*"
+        "react-native": "*",
+        "react-native-gesture-handler": "^1.10.3",
+        "react-native-reanimated": "^2.1.0"
     },
     "jest": {
         "preset": "react-native",
@@ -98,7 +100,7 @@
             "publish": true
         },
         "github": {
-            "release": false
+            "release": true
         },
         "plugins": {
             "@release-it/conventional-changelog": {
@@ -120,8 +122,5 @@
             ]
         ]
     },
-    "dependencies": {
-        "react-native-gesture-handler": "^1.10.3",
-        "react-native-reanimated": "2.0.0-rc.0"
-    }
+    "dependencies": {}
 }
