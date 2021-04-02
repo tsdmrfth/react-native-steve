@@ -29,3 +29,5 @@ jobs:
 
       - name: release-it
         uses: TheRealWaldo/release-it@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
