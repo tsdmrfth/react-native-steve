@@ -44,6 +44,6 @@ jobs:
         GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
 
     - name: Release ${{ github.event.inputs.version }}
-    - run: yarn release
+      run: yarn release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
