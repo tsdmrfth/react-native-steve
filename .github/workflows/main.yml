@@ -21,29 +21,29 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-      - name: Cache node_modules
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - name: Cache node_modules
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Install packages
-        run: yarn install
+    - name: Install packages
+      run: yarn install
 
-      - name: git config
-        run: |
-          git config user.name $GIT_USER
-          git config user.email $GIT_EMAIL
-        env:
-          GIT_USER: ${{ secrets.GIT_USER }}
-          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+    - name: git config
+      run: |
+        git config user.name $GIT_USER
+        git config user.email $GIT_EMAIL
+      env:
+        GIT_USER: ${{ secrets.GIT_USER }}
+        GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
 
-      - name: Release ${{ github.event.inputs.version }}
-      - run: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release ${{ github.event.inputs.version }}
+    - run: yarn release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
