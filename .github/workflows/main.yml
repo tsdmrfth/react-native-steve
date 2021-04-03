@@ -14,9 +14,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  release:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    name: release
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -24,9 +25,25 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-      - run: yarn install
+
+      - name: Cache node_modules
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install packages
+        run: yarn install
+
+      - name: git config
+        run: |
+          git config user.name $GIT_USER
+          git config user.email $GIT_EMAIL
+        env:
+          GIT_USER: ${{ secrets.GIT_USER }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+
+      - name: Release ${{ github.event.inputs.version }}
       - run: yarn release
-      
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
