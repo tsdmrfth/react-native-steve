@@ -26,8 +26,7 @@ jobs:
           fetch-depth: 0
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
       - run: yarn install
-
-      - name: release-it
-        uses: TheRealWaldo/release-it@v0.2.2
+      - run: yarn release
+      
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
