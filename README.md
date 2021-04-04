@@ -16,11 +16,12 @@ or
 yarn add react-native-steve
 ```
 
+## Dependencies
+This library requires [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) and [react-native-gesture-handler](https://github.com/software-mansion/react-native-gesture-handler)
+
 ### Important
 
-> This component uses [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs) v2 so in order to use this component your app must be configured for reanimated v2
-
-> You need to provide a unique key for each item which will be rendered
+> This component uses [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs) v2 stable so in order to use this component your app must be configured for reanimated v2
 
 ## Usage
 
@@ -160,7 +161,6 @@ const styles = StyleSheet.create({
 | ------------------------- | -------- | ---- |  ------- | ------------|
 | data                | yes      |   Array      |  | An array of items to render
 | renderItem | yes | Function | | Function that returns a component with given item and index. It is similar to FlatList's renderItem prop  |
-|keyExtractor| yes | Function| | Function that returns an unique key for each item in the array. Notice that it is a must to provide a unique key since it's used to make calculations||
 |containerStyle|no|Style Object| | Style to use for root component | 
 
 ## Contributing
