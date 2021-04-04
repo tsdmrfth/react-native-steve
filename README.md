@@ -21,7 +21,7 @@ This library requires [react-native-reanimated](https://github.com/software-mans
 
 ### Important
 
-> This component uses [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs) v2 stable so in order to use this component your app must be configured for reanimated v2
+> This component uses [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs) v2 stable version so in order to use this component your app must be configured for reanimated v2
 
 ## Usage
 
