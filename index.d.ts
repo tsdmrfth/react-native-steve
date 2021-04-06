@@ -5,7 +5,6 @@ declare module 'react-native-steve' {
 	export type SteveProps = {
 		data: any[],
 		renderItem: ({item: any, index: number}) => React.ReactNode,
-		keyExtractor: (item: any, index: number) => boolean,
 		containerStyle?: ViewStyle
 	}
 	
