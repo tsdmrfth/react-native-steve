@@ -1,14 +1,14 @@
 declare module 'react-native-steve' {
-	import React from 'react'
-	import {ViewStyle} from 'react-native'
+	import { ViewStyle } from 'react-native';
 	
-	export type SteveProps = {
-		data: any[],
-		renderItem: ({item: any, index: number}) => React.ReactNode,
-		containerStyle?: ViewStyle
+	export interface SteveProps<T> {
+		data: T[],
+		renderItem: ({item, index}: {item: T, index: number}) => JSX.Element,
+		keyExtractor: (item: T) => string,
+		containerStyle?: ViewStyle,
 	}
+	const Steve: <T extends {}>(props: SteveProps<T>) => JSX.Element;
 	
-	const Steve: React.FunctionComponent<SteveProps> = () => React.ReactNode
-	
-	export default Steve
+	export default Steve;
 }
+
