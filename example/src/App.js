@@ -62,7 +62,13 @@ const topics = [
 ]
 
 export default function App() {
-    const { topicContainer, topicText, title } = styles
+    const {
+        topicContainer,
+        topicText,
+        title,
+        container,
+        steveContainer
+    } = styles
 
     const renderTopic = ({ item }) => {
         const { emoji, text } = item
@@ -79,13 +85,17 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <Text style={title}>
                 {'TOPICS TO EXPLORE'}
             </Text>
             <Steve
+                isRTL={true}
                 data={topics}
+                itemSpacing={10}
                 renderItem={renderTopic}
+                itemStyle={{ margin: 5 }}
+                containerStyle={steveContainer}
                 keyExtractor={item => item.text}/>
         </View>
     )
@@ -109,7 +119,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        margin: 5,
         backgroundColor: '#FFF'
     },
     topicText: {
@@ -123,5 +132,6 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginLeft: 15,
         fontWeight: '600'
-    }
+    },
+    steveContainer: { marginHorizontal: 5 }
 })
