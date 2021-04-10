@@ -22,7 +22,7 @@ const getContainerHorizontalSpacing = style => {
         paddingHorizontal = 0,
         paddingLeft = 0,
         paddingRight = 0
-    } = style || {}
+    } = style
     return 2 * (margin + marginHorizontal + padding + paddingHorizontal)
            + (marginLeft + marginRight + paddingLeft + paddingRight)
 }
@@ -203,3 +203,7 @@ const styles = {
 }
 
 Steve.displayName = 'Steve'
+Steve.defaultProps = {
+    containerStyle: {},
+    isRTL: false
+}
