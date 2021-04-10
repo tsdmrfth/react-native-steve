@@ -89,33 +89,43 @@ const topics = [
     }
 ]
 
-export default function TopicsScreen() {
-    const { topicContainer, topicText, title } = styles
+export default function App() {
+    const {
+        topicContainer,
+        topicText,
+        title,
+        container,
+        steveContainer
+    } = styles
 
     const renderTopic = ({ item }) => {
         const { emoji, text } = item
         return (
-            <View style={topicContainer} >
-                <Text >
+            <View style={topicContainer}>
+                <Text>
                     {emoji}
-                </Text >
-                <Text style={topicText} >
+                </Text>
+                <Text style={topicText}>
                     {text}
-                </Text >
-            </View >
+                </Text>
+            </View>
         )
     }
 
     return (
-        <View style={styles.container} >
-            <Text style={title} >
+        <View style={container}>
+            <Text style={title}>
                 {'TOPICS TO EXPLORE'}
-            </Text >
+            </Text>
             <Steve
+                isRTL={false}
                 data={topics}
+                itemSpacing={10}
                 renderItem={renderTopic}
-                keyExtractor={item => item.text} />
-        </View >
+                itemStyle={{ margin: 5 }}
+                containerStyle={steveContainer}
+                keyExtractor={item => item.text}/>
+        </View>
     )
 }
 
@@ -137,7 +147,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        margin: 5,
         backgroundColor: '#FFF'
     },
     topicText: {
@@ -151,7 +160,8 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginLeft: 15,
         fontWeight: '600'
-    }
+    },
+    steveContainer: { marginHorizontal: 5 }
 })
 ```
 
@@ -162,7 +172,9 @@ const styles = StyleSheet.create({
 | data                | yes      |   Array      |  | An array of items to render
 | renderItem | yes | Function | | Function that returns a component with given item and index. It is similar to FlatList's renderItem prop  |
 |keyExtractor| yes | Function| | Function that returns an unique key for each item in the array. Notice that it is a must to provide a unique key since it's used to make calculations||
-|containerStyle|no|Style Object| | Style to use for root component | 
+|containerStyle|no|Style Object| | Style object for root component |
+|isRTL|no|boolean|false|Whether the component is RTL layout|
+|itemStyle|no|Style Object| |Style object for parent component of each child|
 
 ## Contributing
 
