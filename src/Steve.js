@@ -13,7 +13,7 @@ import { PanGestureHandler } from 'react-native-gesture-handler'
 const { width: screenWidth } = Dimensions.get('window')
 const containerPaddingHorizontal = 10
 
-export const Steve = ({ data, renderItem, containerStyle }) => {
+export const Steve = ({ data, renderItem, keyExtractor, containerStyle }) => {
     const itemLayoutsCache = useRef({})
     const [itemLayouts, setItemLayouts] = useState({})
     const translateX = useSharedValue(0)
@@ -68,11 +68,11 @@ export const Steve = ({ data, renderItem, containerStyle }) => {
 
     const Items = () => {
         return data.map((item, index) => {
+            const itemKey = keyExtractor(item, index)
             return (
                 <Item
-                    key={index}
-                    itemKey={index}
-                    {...{ item, index }}/>
+                    key={itemKey}
+                    {...{ item, index, itemKey }}/>
             )
         })
     }
