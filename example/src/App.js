@@ -90,7 +90,7 @@ export default function App() {
                 {'TOPICS TO EXPLORE'}
             </Text>
             <Steve
-                isRTL={true}
+                isRTL={false}
                 data={topics}
                 itemSpacing={10}
                 renderItem={renderTopic}
