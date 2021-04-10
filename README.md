@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
 | ------------------------- | -------- | ---- |  ------- | ------------|
 | data                | yes      |   Array      |  | An array of items to render
 | renderItem | yes | Function | | Function that returns a component with given item and index. It is similar to FlatList's renderItem prop  |
+|keyExtractor| yes | Function| | Function that returns an unique key for each item in the array. Notice that it is a must to provide a unique key since it's used to make calculations||
 |containerStyle|no|Style Object| | Style to use for root component | 
 
 ## Contributing
