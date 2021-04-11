@@ -145,7 +145,9 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle }) => {
     }
 
     return (
-        <PanGestureHandler {...{ onGestureEvent }}>
+        <PanGestureHandler
+            activeOffsetX={[-1, 1]}
+            {...{ onGestureEvent }}>
             <Animated.View style={[styles.container, containerStyle]}>
                 <Items/>
             </Animated.View>
