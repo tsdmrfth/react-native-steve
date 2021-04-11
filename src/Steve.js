@@ -184,11 +184,11 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle, isRTL, i
     }
 
     return (
-        <PanGestureHandler {...{ onGestureEvent }}>
-            <Animated.View style={rtlStyle}>
-                <Animated.View style={[styles.container, containerStyle, rtlStyle]}>
-                    <Items/>
-                </Animated.View>
+        <PanGestureHandler
+            activeOffsetX={[-1, 1]}
+            {...{ onGestureEvent }}>
+            <Animated.View style={[styles.container, containerStyle]}>
+                <Items/>
             </Animated.View>
         </PanGestureHandler>
     )
