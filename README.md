@@ -120,7 +120,6 @@ export default function App() {
             <Steve
                 isRTL={false}
                 data={topics}
-                itemSpacing={10}
                 renderItem={renderTopic}
                 itemStyle={{ margin: 5 }}
                 containerStyle={steveContainer}
