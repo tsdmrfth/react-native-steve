@@ -146,9 +146,8 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle }) => {
 
     return (
         <PanGestureHandler
-            activeOffsetX={[0, 0]}
-            {...{ onGestureEvent }}
-            activeOffsetY={[-Number.MAX_VALUE, Number.MAX_VALUE]}>
+            activeOffsetX={[-1, 1]}
+            {...{ onGestureEvent }}>
             <Animated.View style={[styles.container, containerStyle]}>
                 <Items/>
             </Animated.View>
