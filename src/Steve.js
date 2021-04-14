@@ -160,13 +160,7 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle, isRTL, i
             .values(itemLayoutsCache.current)
             .reduce((accumulator, current, index) => {
                 if (index === 0) {
-                    const firstIndex = isRTL ? 1 : 0
-                    const secondIndex = isRTL ? 0 : 1
-                    const firstKey = keyExtractor(data[firstIndex], firstIndex)
-                    const secondKey = keyExtractor(data[secondIndex], secondIndex)
-                    const firstItem = itemLayoutsCache.current[firstKey]
-                    const secondItem = itemLayoutsCache.current[secondKey]
-                    spacingBetweenItems = secondItem.layout.x - firstItem.layout.width - firstItem.layout.x
+                    spacingBetweenItems = getSpacingBetweenItems()
                 }
 
                 if (!accumulator.sumWidthOfLayer) {
@@ -181,6 +175,20 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle, isRTL, i
                 return accumulator
             }, itemLayoutsCache.current)
         setItemLayouts(itemLayoutsCache.current)
+    }
+
+    const getSpacingBetweenItems = () => {
+        if (data.length < 2) {
+            return 0
+        }
+
+        const firstIndex = isRTL ? 1 : 0
+        const secondIndex = isRTL ? 0 : 1
+        const firstKey = keyExtractor(data[firstIndex], firstIndex)
+        const secondKey = keyExtractor(data[secondIndex], secondIndex)
+        const firstItem = itemLayoutsCache.current[firstKey]
+        const secondItem = itemLayoutsCache.current[secondKey]
+        return secondItem.layout.x - firstItem.layout.width - firstItem.layout.x
     }
 
     return (
