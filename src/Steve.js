@@ -1,16 +1,20 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Animated, {
     useAnimatedGestureHandler,
     useSharedValue,
     withSpring,
     cancelAnimation,
     useAnimatedStyle,
-    withDecay
+    withDecay,
+    withTiming
 } from 'react-native-reanimated'
-import { Dimensions } from 'react-native'
+import { Dimensions, LayoutAnimation } from 'react-native'
 import { PanGestureHandler } from 'react-native-gesture-handler'
+import isEqual from 'react-fast-compare'
+import { useObjectState } from 'hooks'
 
 const { width: screenWidth } = Dimensions.get('window')
+const TIMING_ANIMATION_DURATION = 300
 
 const getContainerHorizontalSpacing = style => {
     const {
@@ -28,8 +32,11 @@ const getContainerHorizontalSpacing = style => {
 }
 
 export const Steve = ({ data, renderItem, keyExtractor, containerStyle, isRTL, itemStyle }) => {
+    const [{ dataCache, itemLayouts }, setState] = useObjectState({
+        dataCache: data,
+        itemLayouts: {}
+    })
     const itemLayoutsCache = useRef({})
-    const [itemLayouts, setItemLayouts] = useState({})
     const containerHorizontalSpacing = getContainerHorizontalSpacing(containerStyle)
     const translateX = useSharedValue(0)
     const rtlStyle = isRTL ? { flexDirection: 'row-reverse' } : {}
@@ -98,10 +105,25 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle, isRTL, i
                 )
             }
         }
-    })
+    }, [itemLayouts])
+
+    useEffect(() => {
+        (async () => {
+            if (!isEqual(dataCache, data)) {
+                translateX.value = withTiming(0)
+                LayoutAnimation.easeInEaseOut()
+                await new Promise(resolve => setTimeout(resolve, TIMING_ANIMATION_DURATION))
+                setState({
+                    dataCache: data,
+                    itemLayouts: {}
+                })
+                itemLayoutsCache.current = {}
+            }
+        })()
+    }, [data, dataCache])
 
     const Items = () => {
-        return data.map((item, index) => {
+        return dataCache.map((item, index) => {
             const itemKey = keyExtractor(item, index)
             return (
                 <Item
@@ -174,7 +196,7 @@ export const Steve = ({ data, renderItem, keyExtractor, containerStyle, isRTL, i
                 accumulator.sumWidthOfLayer[current.layout.y] += current.layout.width + spacingBetweenItems
                 return accumulator
             }, itemLayoutsCache.current)
-        setItemLayouts(itemLayoutsCache.current)
+        setState({ itemLayouts: itemLayoutsCache.current })
     }
 
     const getSpacingBetweenItems = () => {
