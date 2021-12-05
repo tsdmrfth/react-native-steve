@@ -1,5 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import Steve from 'react-native-steve'
 
 const topics = [
@@ -62,6 +62,7 @@ const topics = [
 ]
 
 export default function App() {
+    const [data, setData] = useState(topics)
     const {
         topicContainer,
         topicText,
@@ -84,19 +85,27 @@ export default function App() {
         )
     }
 
+    const handleUpdateDataButtonClick = () => {
+        setData(topics.filter((_, index) => index < Math.random() * 10).reverse())
+    }
+
     return (
         <View style={container}>
             <Text style={title}>
                 {'TOPICS TO EXPLORE'}
             </Text>
             <Steve
+                {...{ data }}
                 isRTL={false}
-                data={topics}
                 itemSpacing={10}
                 renderItem={renderTopic}
                 itemStyle={{ margin: 5 }}
                 containerStyle={steveContainer}
                 keyExtractor={item => item.text}/>
+
+            <Button
+                title={'Update Data'}
+                onPress={handleUpdateDataButtonClick}/>
         </View>
     )
 }
